@@ -1,0 +1,10 @@
+<% for i, article in pairs(articles) do %>
+<div>
+  <h2>
+    <a href="/article/<%= article.id %>">
+      <%= article.title %>
+    </a>
+  </h2>  
+  <p><%= article.content %></h2>
+</div>
+<% end %>

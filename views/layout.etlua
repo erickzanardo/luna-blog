@@ -1,0 +1,8 @@
+<html>
+  <head>
+    <title><%= page_title or "Luna Blog" %></title>
+  </head>
+  <body>
+    <% content_for("inner") %>
+  </body>
+</html>
