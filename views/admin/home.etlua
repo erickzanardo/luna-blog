@@ -1,1 +1,42 @@
-Hello: <%= current_author.name %>
+Logged as: <%= current_author.name %> <a href="/admin/logout">Logout</a>
+
+<ul class="nav nav-tabs admin-top-tabs">
+  <li role="presentation" <% if tab == "articles" then %> class="active" <% end %>><a href="/admin/articles">Articles</a></li>
+  <li role="presentation" <% if tab == "authors" then %> class="active" <% end %>><a href="/admin/authors">Authors</a></li>
+</ul>
+
+<% if tab == "articles" then %>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th> Title </th>
+      <th> Author </th>
+      <th> Date </th>
+    </tr>
+    <% for i, article in pairs(articles) do %>
+    <tr>
+      <td> <%= article.title %> </td>
+      <td> <%= article:get_author().name %> </td>
+      <td> <%= article.date %> </td>
+    </tr>
+    <% end %>
+  </thead>
+</table>
+<% end %>
+
+<% if tab == "authors" then %>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th> Name </th>
+      <th> Email </th>
+    </tr>
+    <% for i, author in pairs(authors) do %>
+    <tr>
+      <td> <%= author.name %> </td>
+      <td> <%= author.email %> </td>
+    </tr>
+    <% end %>
+  </thead>
+</table>
+<% end %>

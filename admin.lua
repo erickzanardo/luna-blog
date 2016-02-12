@@ -1,14 +1,32 @@
 local Authors = require("models.Authors")
+local Articles = require("models.Articles")
 local crypto = require("crypto")
 
 return function(app)
-  app:get("/admin", function(self)
+
+  local home = function(self)
+    self.current_author = self.session.current_author
+
+    local tab = self.params.tab or "articles"
+    self.tab = tab
+
+    if tab == "articles" then
+      self.articles = Articles:select()
+    elseif tab == "authors" then
+      self.authors = Authors:select()
+    end
+
+    return { render = "admin.home", layout = "admin.layout" }
+  end
+
+  app:get("/admin", home)
+
+  app:get("/admin/:tab", function(self)
     if not self.session.current_author then
       self.errors = self.params.error == "true"
       return { render = "admin.login", layout = "admin.layout" }
     else
-      self.current_author = self.session.current_author
-      return { render = "admin.home", layout = "admin.layout" }
+      return home(self)
     end
   end)
 
@@ -24,5 +42,10 @@ return function(app)
       self.session.current_author = { id = author.id, name = author.name, email = author.email }
       return { redirect_to = "/admin" }
     end
+  end)
+
+  app:get("/admin/logout", function(self)
+    self.session.current_author = nil
+    return { redirect_to = "/admin" }
   end)
 end
