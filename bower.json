@@ -1,0 +1,23 @@
+{
+  "name": "luna-blog",
+  "authors": [
+    "Erick <erickzanardoo@gmail.com>"
+  ],
+  "description": "Luna blog",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "assets/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6"
+  }
+}

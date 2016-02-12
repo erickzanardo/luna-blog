@@ -1,0 +1,22 @@
+<div class="row login-container">
+  <div class="col-md-4 col-md-offset-4">
+    <form method="POST" action="/admin/login">
+      <div class="form-group">
+        <% if errors then %>
+        <div class="alert alert-danger" role="alert">Invalid email or password</div>
+        <% end %>
+        <label for="email"> Email </label>
+        <input type="email" class="form-control" name="email">
+      </div>
+      <div class="form-group">
+        <label for="password"> Password </label>
+        <input type="password" class="form-control" name="password">
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary btn-block">Log in</button>
+      </div>
+    </form>
+  </div>
+</div>
+<script type="text/javascript">
+</script>

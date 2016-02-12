@@ -1,0 +1,13 @@
+<html>
+  <head>
+    <title>Admin</title>
+    <link rel="stylesheet" href="/assets/components/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/assets/admin/admin.css"/>
+  </head>
+  <body>
+    <div class="container">
+      <% content_for("inner") %>
+    </div>
+  </body>
+</html>
+

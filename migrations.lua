@@ -18,6 +18,7 @@ return {
       { "id", types.serial },
       { "name", types.text },
       { "email", types.text },
+      { "password", types.text },
 
       "PRIMARY KEY (id)"
     })
