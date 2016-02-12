@@ -6,5 +6,8 @@
     </a>
   </h2>  
   <p><%= article.content %></h2>
+  <div class="written-by">
+    By: <%= article:get_author().name %>
+  </div>
 </div>
 <% end %>

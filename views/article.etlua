@@ -3,4 +3,7 @@
   <div>
     <%= article.content %>
   </div>
+  <div>
+    Written by: <%= article:get_author().name %>
+  </div>
 </div>
