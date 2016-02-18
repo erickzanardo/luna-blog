@@ -5,30 +5,28 @@ local crypto = require("crypto")
 return function(app)
 
   local home = function(self)
-    self.current_author = self.session.current_author
-
-    local tab = self.params.tab or "articles"
-    self.tab = tab
-
-    if tab == "articles" then
-      self.articles = Articles:select()
-    elseif tab == "authors" then
-      self.authors = Authors:select()
-    end
-
-    return { render = "admin.home", layout = "admin.layout" }
-  end
-
-  app:get("/admin", home)
-
-  app:get("/admin/:tab", function(self)
     if not self.session.current_author then
       self.errors = self.params.error == "true"
       return { render = "admin.login", layout = "admin.layout" }
     else
-      return home(self)
+      self.current_author = self.session.current_author
+
+      local tab = self.params.tab or "articles"
+      self.tab = tab
+
+      if tab == "articles" then
+        self.articles = Articles:select()
+      elseif tab == "authors" then
+        self.authors = Authors:select()
+      end
+
+      return { render = "admin.home", layout = "admin.layout" }
     end
-  end)
+  end
+
+  app:get("/admin", home)
+
+  app:get("/admin/:tab", home)
 
   app:post("/admin/login", function(self)
     local password = crypto.digest("md5", self.params.password)
