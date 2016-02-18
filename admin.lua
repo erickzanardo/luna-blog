@@ -46,4 +46,46 @@ return function(app)
     self.session.current_author = nil
     return { redirect_to = "/admin" }
   end)
+
+  app:get("/admin/article/:article", function(self)
+    if not self.session.current_author then
+      return { redirect_to = "/admin" }
+    end
+
+    if self.params.article == "new" then
+      self.article = {
+        id = "new",
+        title = "",
+        content = ""
+      }
+    else
+      self.article = Articles:find(self.params.article)
+    end
+
+    return { render = "admin.article", layout = "admin.layout" }
+  end)
+
+  app:post("/admin/article/:article", function(self)
+    if not self.session.current_author then
+      return { status = 401 }
+    end
+
+    local article
+
+    if self.params.article == "new" then
+      article = Articles:create({
+        title = self.params.title;
+        content = self.params.content;
+        author_id = self.session.current_author.id 
+      })
+    else
+      article = Articles:find(self.params.article)
+      article:update({
+        title = self.params.title;
+        content = self.params.content;
+      })
+    end
+    return { redirect_to = "/admin/article/" .. article.id }
+  end)
+
 end

@@ -6,3 +6,10 @@
   margin-top: 50px;
 }
 
+.logged-container {
+  margin-bottom: 50px;
+}
+
+textarea.article-content-edit {
+  height: 350px;
+}

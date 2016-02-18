@@ -6,6 +6,11 @@
   </head>
   <body>
     <div class="container">
+      <% if session.current_author then %>
+        <div class="logged-container">
+          Logged as: <%= session.current_author.name %> <a href="/admin/logout">Logout</a>
+        </div>
+      <% end %>
       <% content_for("inner") %>
     </div>
   </body>

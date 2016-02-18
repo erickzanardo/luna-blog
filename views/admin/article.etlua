@@ -1,0 +1,16 @@
+<form action="/admin/article/<%= article.id %>" method="post">
+  <div class="form-group">
+    <label> Title </label>
+    <input class="form-control" type="text" name="title" value="<%= article.title %>">
+  </div>
+  <div class="form-group">
+    <label> Content </label>
+    <textarea name="content" class="form-control article-content-edit"><%= article.content %></textarea>
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a href="/admin/articles">
+      <button type="button" class="btn btn-default">Back</button>
+    </a>
+  </div>
+</form>

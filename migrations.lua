@@ -8,7 +8,7 @@ return {
       { "id", types.serial },
       { "title", types.text },
       { "content", types.text },
-      { "date", types.date },
+      { "date", types.date({ null = true }) },
 
       "PRIMARY KEY (id)"
     })

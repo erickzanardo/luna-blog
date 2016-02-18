@@ -1,4 +1,8 @@
-Logged as: <%= current_author.name %> <a href="/admin/logout">Logout</a>
+<div>
+  <a href="/admin/article/new">
+    <button class="btn btn-primary">New article</button>
+  </a>
+</div>
 
 <ul class="nav nav-tabs admin-top-tabs">
   <li role="presentation" <% if tab == "articles" then %> class="active" <% end %>><a href="/admin/articles">Articles</a></li>
@@ -12,12 +16,14 @@ Logged as: <%= current_author.name %> <a href="/admin/logout">Logout</a>
       <th> Title </th>
       <th> Author </th>
       <th> Date </th>
+      <th></th>
     </tr>
     <% for i, article in pairs(articles) do %>
     <tr>
       <td> <%= article.title %> </td>
       <td> <%= article:get_author().name %> </td>
       <td> <%= article.date %> </td>
+      <td><a href="/admin/article/<%= article.id %>"> Edit </a></td>
     </tr>
     <% end %>
   </thead>
